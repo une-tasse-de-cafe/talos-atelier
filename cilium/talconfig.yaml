@@ -1,0 +1,68 @@
+---
+clusterName: talos-dev
+talosVersion: v1.7.5
+kubernetesVersion: v1.29.1
+endpoint: https://192.168.128.39:6443
+allowSchedulingOnMasters: true
+cniConfig:
+  name: flannel
+patches:
+		# On supprime le kubespan / discovery
+  - |-
+    - op: add
+      path: /cluster/discovery/enabled
+      value: true
+    - op: replace
+      path: /machine/network/kubespan
+      value:
+        enabled: true 
+    - op: add
+      path: /machine/kubelet/extraArgs
+      value:
+        rotate-server-certificates: true
+    - op: add
+      path: /machine/files
+      value:
+      - content: |
+          [metrics]
+            address = "0.0.0.0:11234"        
+        path: /var/cri/conf.d/metrics.toml
+        op: create
+nodes:
+  - hostname: controlplane-vm-01
+    ipAddress: 192.168.128.39
+    controlPlane: true
+    arch: amd64
+    installDisk: /dev/sda
+    nameservers:
+      - 1.1.1.1
+      - 8.8.8.8
+  - hostname: controlplane-vm-02
+    ipAddress: 192.168.128.40
+    controlPlane: true
+    arch: amd64
+    installDisk: /dev/sda
+    nameservers:
+      - 1.1.1.1
+      - 8.8.8.8
+controlPlane:
+  patches:
+    - |-
+      - op: add
+        path: /cluster/proxy/disabled
+        value: true
+  schematic:
+    customization:
+      extraKernelArgs:
+        - net.ifnames=0
+      systemExtensions:
+        officialExtensions:
+         - siderolabs/qemu-guest-agent
+worker:
+  schematic:
+    customization:
+      extraKernelArgs:
+        - net.ifnames=0
+      systemExtensions:
+        officialExtensions:
+         - siderolabs/qemu-guest-agent
