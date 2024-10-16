@@ -1,0 +1,3 @@
+[submodule "omni-talos-cluster-template"]
+	path = omni-talos-cluster-template
+	url = https://github.com/qjoly/omni-talos-cluster-template
