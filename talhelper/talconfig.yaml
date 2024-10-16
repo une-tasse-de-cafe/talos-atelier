@@ -14,7 +14,6 @@ nodes:
   - hostname: controlplane-vm-01
     ipAddress: 192.168.1.36
     controlPlane: true
-    arch: amd64
     installDisk: /dev/sda
     nameservers:
       - 1.1.1.1
@@ -31,12 +30,10 @@ nodes:
   - hostname: worker-vm-01
     ipAddress: 192.168.128.39
     controlPlane: false
-    arch: amd64
     installDisk: /dev/sda
   - hostname: worker-vm-02
     ipAddress: 192.168.128.40
     controlPlane: false
-    arch: amd64
     installDisk: /dev/sda
 #controlPlane:
 #  schematic:
