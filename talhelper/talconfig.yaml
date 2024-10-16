@@ -1,8 +1,8 @@
 ---
-clusterName: hello-touraine-tech-2024
-talosVersion: v1.7.5
-kubernetesVersion: v1.29.1
-endpoint: https://192.168.1.36:6443
+clusterName: talos-cluster
+talosVersion: v1.8.1
+kubernetesVersion: v1.30.1
+endpoint: https://192.168.1.101:6443
 allowSchedulingOnMasters: true
 patches:
   - |-
@@ -11,44 +11,19 @@ patches:
       value:
         enabled: true 
 nodes:
-  - hostname: controlplane-vm-01
-    ipAddress: 192.168.1.36
+  - hostname: cp-1
+    ipAddress: 192.168.1.101
     controlPlane: true
     installDisk: /dev/sda
-    nameservers:
-      - 1.1.1.1
-      - 8.8.8.8
-    networkInterfaces:
-      - interface: eth0
-        routes:
-          - network: 0.0.0.0/0
-            gateway: 192.168.1.1
-        addresses:
-          - 192.168.1.36/24
-        vip:
-          ip: 192.168.1.200
-  - hostname: worker-vm-01
-    ipAddress: 192.168.128.39
+  - hostname: cp-2
+    ipAddress: 192.168.1.102
+    controlPlane: true
+    installDisk: /dev/sda
+  - hostname: cp-3
+    ipAddress: 192.168.1.103
+    controlPlane: true
+    installDisk: /dev/sda
+  - hostname: worker-1
+    ipAddress: 192.168.1.104
     controlPlane: false
     installDisk: /dev/sda
-  - hostname: worker-vm-02
-    ipAddress: 192.168.128.40
-    controlPlane: false
-    installDisk: /dev/sda
-#controlPlane:
-#  schematic:
-#    customization:
-#      extraKernelArgs:
-#        - net.ifnames=0
-#      systemExtensions:
-#        officialExtensions:
-#         - siderolabs/qemu-guest-agent
-#worker:
-#  schematic:
-#    customization:
-#      extraKernelArgs:
-#        - net.ifnames=0
-#      systemExtensions:
-#        officialExtensions:
-#         - siderolabs/qemu-guest-agent
-#
