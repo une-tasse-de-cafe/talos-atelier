@@ -1,0 +1,5 @@
+basic-way/secrets.yaml
+basic-way/controlplane.yaml
+basic-way/talosconfig
+basic-way/worker.yaml
+basic-way/kubeconfig
