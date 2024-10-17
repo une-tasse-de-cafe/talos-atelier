@@ -10,7 +10,7 @@
 clear
 
 {
- printf 'NAME\IP\ROLE\n';
+ printf 'NAME\tIP\tROLE\n';
  printf '%s\t%s\t%s\n' "cp-1" "192.168.1.101" "ControlPlane";
  printf '%s\t%s\t%s\n' "cp-2" "192.168.1.102" "ControlPlane";
  printf '%s\t%s\t%s\n' "cp-3" "192.168.1.103" "ControlPlane";
@@ -20,30 +20,41 @@ clear
 pei "talosctl gen secrets"
 pei "ls -l secrets.yaml"
 
-pe "vim secrets.yaml"
+#pe "vim secrets.yaml"
 
+echo "Create the configuration with "demo" as cluster name and the IP of the first controlplane node"
 pei "talosctl gen config demo https://192.168.1.101:6443"
 sleep 1
-pei "ls -lh"
 
-pe "vim controlplane.yaml"
+p "ls -lh"
 
+ls -l controlplane.yaml secrets.yaml worker.yaml talosconfig
+
+#pe "vim controlplane.yaml"
 pe "talosctl apply-config -f ./controlplane.yaml -e 192.168.1.101 -n 192.168.1.101 --insecure"
-pei "talosctl apply-config -f ./controlplane.yaml -e 192.168.1.102 -n 192.168.1.102,192.168.1.103 --insecure"
+pe "talosctl apply-config -f ./controlplane.yaml -e 192.168.1.102 -n 192.168.1.102 --insecure"
+pei "talosctl apply-config -f ./controlplane.yaml -e 192.168.1.103 -n 192.168.1.103 --insecure"
 
-repl
+echo "------------"
 
-pei "talosctl bootstrap "
+pe "export TALOSCONFIG=./talosconfig"
+export TALOSCONFIG=./talosconfig
+pei "talosctl config endpoint 192.168.1.101"
+pei "talosctl config node 192.168.1.101 192.168.1.102 192.168.1.103"
 
-sleep 2
+pe "talosctl dmesg -n 192.168.1.101"
 
-pe "talosctl etcd members -n 192.168.1.101 -e 192.168.1.101 --talosconfig ./talosconfig"
-repl
+pe "talosctl bootstrap -n 192.168.1.101"
+sleep 1
 
-pe "talosctl kubeconfig ---merge=false -n 192.168.1.101 -e 192.168.1.101 --talosconfig ./talosconfig"
-pei "kubectl --kubeconfig ./kubeconfig get pods -A"
+pe "talosctl etcd members -n 192.168.1.101"
+
+pe "talosctl kubeconfig --merge=false -n 192.168.1.101"
+pe "kubectl --kubeconfig ./kubeconfig get pods -A"
 pe "kubectl --kubeconfig ./kubeconfig get nodes"
 
 pei "talosctl apply-config -f ./worker.yaml -e 192.168.1.104 -n 192.168.1.104 --insecure"
+
+pei "kubectl --kubeconfig ./kubeconfig get nodes -w"
 
 echo "------------"

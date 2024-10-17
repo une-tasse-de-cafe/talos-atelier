@@ -103,9 +103,9 @@ function p() {
   fi
 
   if [[ -z $TYPE_SPEED ]]; then
-    echo "$cmd"
+    echo -en "$cmd"
   else
-    echo "$cmd" | pv -qL $[$TYPE_SPEED+(-2 + RANDOM%5)];
+    echo -en "$cmd" | pv -qL $[$TYPE_SPEED+(-2 + RANDOM%5)];
   fi
 
   # wait for the user to press a key before moving on
