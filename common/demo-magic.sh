@@ -129,6 +129,74 @@ function pe() {
   run_cmd "$@"
 }
 
+
+function pi() {
+  if [[ ${1:0:1} == "#" ]]; then
+    cmd=$DEMO_COMMENT_COLOR$1$COLOR_RESET
+  else
+    cmd=$DEMO_CMD_COLOR$1$COLOR_RESET
+  fi
+
+  # render the prompt
+  x=$(PS1="$DEMO_PROMPT" "$BASH" --norc -i </dev/null 2>&1 | sed -n '${s/^\(.*\)exit$/\1/p;}')
+
+  # show command number is selected
+  if $SHOW_CMD_NUMS; then
+   printf "[$((++C_NUM))] $x"
+  else
+   printf "$x"
+  fi
+
+  echo -en "$cmd"
+
+}
+
+##
+# Prints and executes a command
+#
+# takes 1 parameter - the string command to run
+#
+# usage: pe "ls -l"
+#
+##
+function fpe() {
+  if [[ ${1:0:1} == "#" ]]; then
+    cmd=$DEMO_COMMENT_COLOR$1$COLOR_RESET
+  else
+    cmd=$DEMO_CMD_COLOR$1$COLOR_RESET
+  fi
+
+  # render the prompt
+  x=$(PS1="$DEMO_PROMPT" "$BASH" --norc -i </dev/null 2>&1 | sed -n '${s/^\(.*\)exit$/\1/p;}')
+
+  # show command number is selected
+  if $SHOW_CMD_NUMS; then
+   printf "[$((++C_NUM))] $x"
+  else
+   printf "$x"
+  fi
+
+  # wait for the user to press a key before typing the command
+  if [ $NO_WAIT = false ]; then
+    wait
+  fi
+
+  if [[ -z $TYPE_SPEED ]]; then
+    echo -en "$cmd"
+  else
+    echo -en "$cmd" | pv -qL $[90+(-2 + RANDOM%5)];
+  fi
+
+  # wait for the user to press a key before moving on
+  if [ $NO_WAIT = false ]; then
+    wait
+  fi
+  echo ""
+
+  run_cmd "$@"
+}
+
+
 ##
 # print and executes a command immediately
 #
