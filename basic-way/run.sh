@@ -14,7 +14,7 @@ clear
  printf '%s\t%s\t%s\n' "cp-1" "192.168.1.101" "ControlPlane";
  printf '%s\t%s\t%s\n' "cp-2" "192.168.1.102" "ControlPlane";
  printf '%s\t%s\t%s\n' "cp-3" "192.168.1.103" "ControlPlane";
- printf '%s\t%s\t%s\n' "worker-1" "192.168.1.104" "Worker";
+ printf '%s\t%s\t%s\n' "worker-1" "192.168.1.114" "Worker";
 } | prettytable 3
 
 pei "talosctl gen secrets"
@@ -53,7 +53,7 @@ pe "talosctl kubeconfig --merge=false -n 192.168.1.101"
 pe "kubectl --kubeconfig ./kubeconfig get pods -A"
 pe "kubectl --kubeconfig ./kubeconfig get nodes"
 
-pei "talosctl apply-config -f ./worker.yaml -e 192.168.1.104 -n 192.168.1.104 --insecure"
+pei "talosctl apply-config -f ./worker.yaml -e 192.168.1.114 -n 192.168.1.114 --insecure"
 
 pei "kubectl --kubeconfig ./kubeconfig get nodes -w"
 

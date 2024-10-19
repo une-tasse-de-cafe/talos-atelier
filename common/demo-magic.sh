@@ -21,7 +21,7 @@ NO_WAIT=false
 PROMPT_TIMEOUT=0
 
 # don't show command number unless user specifies it
-SHOW_CMD_NUMS=false
+SHOW_CMD_NUMS=true
 
 
 # handy color vars for pretty prompts
@@ -40,7 +40,7 @@ COLOR_RESET="\033[0m"
 C_NUM=0
 
 # prompt and command color which can be overriden
-DEMO_PROMPT="$ "
+DEMO_PROMPT="atelier-talos $ "
 DEMO_CMD_COLOR=$BOLD
 DEMO_COMMENT_COLOR=$GREY
 

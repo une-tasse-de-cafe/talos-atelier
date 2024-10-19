@@ -24,6 +24,6 @@ nodes:
     controlPlane: true
     installDisk: /dev/sda
   - hostname: worker-1
-    ipAddress: 192.168.1.104
+    ipAddress: 192.168.1.114
     controlPlane: false
     installDisk: /dev/sda
