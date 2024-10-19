@@ -6,3 +6,4 @@ basic-way/kubeconfig
 talhelper/kubeconfig
 talhelper/clusterconfig
 talhelper/talsecret.yaml
+extensions/customization.json
