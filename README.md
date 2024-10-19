@@ -15,6 +15,10 @@ Ce dépôt contient les différentes démonstrations à réaliser lors de l'atel
 - Les scripts [`demo-magic.sh`](https://github.com/paxtonhare/demo-magic) et [`prettytable`](https://github.com/jakobwesthoff/prettytable.sh) pour les démonstrations.
 - `talosctl`, `talhelper`, `omnictl` et `kubectl` installés sur votre machine.
 
+## Remerciements
+
+Un énorme merci à [Rémi Verchère](https://www.vrchr.fr/posts/2023/2023-12-18-demo-magic/) pour son article à propos de `demo-magic.sh` 
+
 ## Licence
 
 Ce dépôt est sous licence MIT. Voir le fichier `LICENSE` pour plus d'informations.
