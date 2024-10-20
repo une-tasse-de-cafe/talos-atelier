@@ -4,8 +4,18 @@
 # include the magic    #
 ########################
 . ../common/demo-magic.sh
+. ../common/prettytable.sh
+
 # hide the evidence
 clear
+
+{
+ printf 'NAME\tIP\tROLE\n';
+ printf '%s\t%s\t%s\n' "cp-1" "192.168.1.101" "ControlPlane";
+ printf '%s\t%s\t%s\n' "cp-2" "192.168.1.102" "ControlPlane";
+ printf '%s\t%s\t%s\n' "cp-3" "192.168.1.103" "ControlPlane";
+ printf '%s\t%s\t%s\n' "worker-1" "192.168.1.114" "Worker";
+} | prettytable 3
 
 pei "talhelper gensecret > talsecret.yaml"
 pei "ls -l talsecret.yaml"
@@ -27,3 +37,4 @@ fpe "talosctl kubeconfig --talosconfig=./clusterconfig/talosconfig --merge=false
 
 pe "kubectl --kubeconfig ./kubeconfig get pods -A"
 
+echo "------------"
