@@ -17,7 +17,9 @@ clear
  printf '%s\t%s\t%s\n' "worker-1" "192.168.1.114" "Worker";
 } | prettytable 3
 
-pei "talhelper gensecret > talsecret.yaml"
+pei "cat talconfig.yaml"
+
+pe "talhelper gensecret > talsecret.yaml"
 pei "ls -l talsecret.yaml"
 pe "talhelper genconfig"
 p "talhelper gencommand"

@@ -1,0 +1,21 @@
+---
+clusterName: kubespan-cluster
+talosVersion: v1.8.1
+kubernetesVersion: v1.30.1
+endpoint: https://192.168.1.12:6443
+allowSchedulingOnMasters: true
+patches:
+  - |
+    - op: replace
+      path: /machine/network/kubespan
+      value:
+        enabled: true 
+nodes:
+  - hostname: cp-zone-home
+    ipAddress: 192.168.1.12
+    controlPlane: true
+    installDisk: /dev/sda
+  - hostname: cp-zone-cloud
+    ipAddress: 192.168.128.66
+    controlPlane: true
+    installDisk: /dev/sda
