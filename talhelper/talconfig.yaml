@@ -18,7 +18,7 @@ controlPlane:
       - op: add
         path: /machine/kubelet/extraArgs
         value:
-          rotate-server-certificates: "true"
+          feature-gates: ServerSideApply=true
 nodes:
   - hostname: cp-1
     ipAddress: 192.168.1.101
