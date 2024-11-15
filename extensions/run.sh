@@ -11,10 +11,10 @@ clear
 
 {
  printf 'NAME\tIP\tROLE\n';
- printf '%s\t%s\t%s\n' "cp-1" "192.168.1.101" "ControlPlane";
- printf '%s\t%s\t%s\n' "cp-2" "192.168.1.102" "ControlPlane";
- printf '%s\t%s\t%s\n' "cp-3" "192.168.1.103" "ControlPlane";
- printf '%s\t%s\t%s\n' "worker-1" "192.168.1.114" "Worker";
+ printf '%s\t%s\t%s\n' "cp-1" "192.168.64.101" "ControlPlane";
+ printf '%s\t%s\t%s\n' "cp-2" "192.168.64.102" "ControlPlane";
+ printf '%s\t%s\t%s\n' "cp-3" "192.168.64.103" "ControlPlane";
+ printf '%s\t%s\t%s\n' "worker-1" "192.168.64.104" "Worker";
 } | prettytable 3
 
 pe "yq eval -o=json customization.yaml > customization.json"
