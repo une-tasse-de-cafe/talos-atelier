@@ -1,3 +1,6 @@
 [submodule "omni-talos-cluster-template"]
 	path = omni-talos-cluster-template
 	url = https://github.com/qjoly/omni-talos-cluster-template
+[submodule "extensions/make-extension/coffee.custom.extension"]
+	path = extensions/make-extension/coffee.custom.extension
+	url = https://github.com/qjoly/talos.coffee.extension
