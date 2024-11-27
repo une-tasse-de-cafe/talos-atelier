@@ -1,0 +1,16 @@
+{
+	"name": "Debian",
+	"image": "mcr.microsoft.com/devcontainers/base:bullseye",
+	"features": {
+		"ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {},
+		"ghcr.io/audacioustux/devcontainers/k9s:1": {}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"stateful.runme"
+			]
+		}
+	},
+	"postStartCommand": "curl -sL https://talos.dev/install | sh"
+}
