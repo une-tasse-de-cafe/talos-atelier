@@ -1,13 +1,19 @@
 # Démo #1
 ---
 Installation d'un Talos "The Basic Way" sur un cluster de 4 noeuds : 
-- 3 Control Plane Nodes
-- 1 Worker Node
+
+| Noeud | IP | Rôle |
+| --- | --- | --- |
+| cp-1 | 192.168.1.101 | Control Plane |
+| cp-2 | 192.168.1.102 | Control Plane |
+| cp-3 | 192.168.1.103 | Control Plane |
+| w-1 | 192.168.1.114 | Worker | 
 
 **Génération des secrets**:
 
 ```sh {"background":"true","name":"gen-secret"}
 talosctl gen secrets
+ls -l secrets.yaml
 ```
 
 **Génération de la configuration**:
