@@ -65,6 +65,8 @@ TALOSCONFIG=talosconfig talosctl kubeconfig -n 192.168.1.101 --merge=false
 KUBECONFIG=kubeconfig k9s
 ```
 
+**Appliquer le dernier worker**:
+
 ```sh
 TALOSCONFIG=talosconfig talosctl apply-config -f worker.yaml -n 192.168.1.114 --insecure
 ```
