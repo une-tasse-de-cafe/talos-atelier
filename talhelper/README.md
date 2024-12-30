@@ -1,4 +1,5 @@
 # Démo #2
+
 Découverte de [TalHelper](https://github.com/budimanjojo/talhelper)
 
 ---
@@ -23,7 +24,7 @@ talhelper genconfig
 
 **Obtenir la commande d'apply:**
 
-```sh {"terminalRows":"5"}
+```sh {"terminalRows":"11"}
 talhelper gencommand apply --extra-flags --insecure
 ```
 
@@ -36,7 +37,7 @@ talosctl apply-config --talosconfig=./clusterconfig/talosconfig --nodes=192.168.
 
 **Bootstrap etcd :**
 
-```sh {"terminalRows":"2"}
+```sh {"terminalRows":"6"}
 talhelper gencommand bootstrap
 ```
 

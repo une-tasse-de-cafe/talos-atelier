@@ -45,7 +45,7 @@ TALOSCONFIG=talosconfig talosctl dmesg -e 192.168.1.101 -n 192.168.1.101 --talos
 Lancer l'opération de **Bootstrap** sur le noeud `192.168.1.101`:
 
 ```sh
-TALOSCONFIG=talosconfig talosctl bootstrap -n 192.168.1.101 -e 192.168.1.101 --talosconfig ./talosconfig
+TALOSCONFIG=talosconfig talosctl bootstrap -n 192.168.1.101 -e 192.168.1.101 
 ```
 
 **Récupérer le fichier `kubeconfig`**:

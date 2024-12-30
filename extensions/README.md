@@ -21,7 +21,7 @@ curl -s -X POST https://factory.talos.dev/schematics \
 id=$__
 echo "Use the following ID : $id"
 talosctl --force --talosconfig=../talhelper/clusterconfig/talosconfig \
-    upgrade --image=factory.talos.dev/installer/${id}:v1.8.1 \
+    upgrade --image=factory.talos.dev/installer/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515:v1.8.1 \
     -n 192.168.1.101
 ```
 
@@ -29,5 +29,5 @@ talosctl --force --talosconfig=../talhelper/clusterconfig/talosconfig \
 
 ```sh
 talosctl services \
-    --talosconfig ../talhelper/clusterconfig/talosconfig | grep qemu
+    --talosconfig ../talhelper/clusterconfig/talosconfig -n 192.168.1.101 
 ```
