@@ -34,6 +34,16 @@ talosctl apply-config -f ./controlplane.yaml -e 192.168.1.103 -n 192.168.1.103 -
 TALOSCONFIG=talosconfig talosctl config endpoint 192.168.1.101
 ```
 
+**Récupérer le fichier `kubeconfig`**:
+
+```sh {"terminalRows":"2"}
+TALOSCONFIG=talosconfig talosctl kubeconfig -n 192.168.1.101 --merge=false
+```
+
+```sh {"terminalRows":"30"}
+KUBECONFIG=kubeconfig k9s
+```
+
 ---
 
 **Afficher les logs du noeud `192.168.1.101`:**
@@ -46,16 +56,6 @@ Lancer l'opération de **Bootstrap** sur le noeud `192.168.1.101`:
 
 ```sh
 TALOSCONFIG=talosconfig talosctl bootstrap -n 192.168.1.101 -e 192.168.1.101 
-```
-
-**Récupérer le fichier `kubeconfig`**:
-
-```sh
-TALOSCONFIG=talosconfig talosctl kubeconfig -n 192.168.1.101 --merge=false
-```
-
-```sh {"terminalRows":"30"}
-KUBECONFIG=kubeconfig k9s
 ```
 
 **Appliquer le dernier worker**:
